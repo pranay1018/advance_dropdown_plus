@@ -1,9 +1,9 @@
 name: advance_dropdown_plus
 description: "An advanced Flutter dropdown widget with multi-selection, search functionality, and customizable styling. Supports both single and multi-select modes with validation."
 version: 1.0.0
-homepage: https://github.com/pranay1018/advance_dropdown_plus
-repository: https://github.com/pranay1018/advance_dropdown_plus
-issue_tracker: https://github.com/pranay1018/advance_dropdown_plus/issues
+homepage: https://github.com/pranay311/advance_dropdown_plus
+repository: https://github.com/pranay311/advance_dropdown_plus
+issue_tracker: https://github.com/pranay311/advance_dropdown_plus/issues
 
 environment:
   sdk: ^3.8.1

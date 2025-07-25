@@ -119,4 +119,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Issues
 
-Please file feature requests and bugs at the [issue tracker](https://github.com/YOUR_USERNAME/advance_dropdown_plus/issues).
+Please file feature requests and bugs at the [issue tracker](https://github.com/pranay311/advance_dropdown_plus/issues).
