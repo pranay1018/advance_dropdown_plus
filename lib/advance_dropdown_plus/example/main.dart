@@ -87,20 +87,6 @@ class _MultiSelectExampleState extends State<MultiSelectExample> {
     DropDownValueModel(name: 'Swimming', value: 'swimming'),
   ];
 
-  // Track selected items with checkbox state
-  Map<String, bool> checkboxStates = {};
-  List<DropDownValueModel> selectedItems = [];
-  bool selectAll = false;
-
-  @override
-  void initState() {
-    super.initState();
-    // Initialize checkbox states
-    for (var option in sportsOptions) {
-      checkboxStates[option.value] = false;
-    }
-  }
-
   void changeSelection(DropDownValueModel value, bool isCheck, int index) {
     if (isCheck) {
       value.isSelected.value = true;
@@ -123,6 +109,7 @@ class _MultiSelectExampleState extends State<MultiSelectExample> {
           children: [
             // Dropdown field from the package
             DropdownField.multiSelection(
+              enableSearch: true,
               controller: multiController,
               dropDownList: sportsOptions,
               isSelectAll: true,
@@ -137,7 +124,11 @@ class _MultiSelectExampleState extends State<MultiSelectExample> {
               onCheckChange: (model, isCheck, index) {
                 changeSelection(model, isCheck, index);
               },
-              onChanged: (selectedList) {},
+              onChanged: (selectedList) {
+                print(
+                  "Package Dropdown - Selected Items: ${selectedList.map((e) => e.name).join(', ')}",
+                );
+              },
             ),
           ],
         ),

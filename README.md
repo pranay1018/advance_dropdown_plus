@@ -38,21 +38,21 @@ import 'package:advance_dropdown_plus/advance_dropdown_plus.dart';
 ```dart
 final singleController = SingleValueDropDownController();
 
-DropdownField.singleSelection(
-  controller: singleController,
-  dropDownList: [
-    DropDownValueModel(name: 'Option 1', value: 'option1'),
-    DropDownValueModel(name: 'Option 2', value: 'option2'),
-    DropDownValueModel(name: 'Option 3', value: 'option3'),
-  ],
-  textFieldDecoration: const InputDecoration(
-    labelText: "Select an option",
-    border: OutlineInputBorder(),
-  ),
-  onChanged: (selectedItem) {
-    print('Selected: ${selectedItem.name}');
-  },
-)
+DropdownField(
+          controller: singleController,
+          dropDownList: [
+            DropDownValueModel(name: 'Option 1', value: 'option1'),
+            DropDownValueModel(name: 'Option 2', value: 'option2'),
+            DropDownValueModel(name: 'Option 3', value: 'option3'),
+          ],
+          textFieldDecoration: const InputDecoration(
+            labelText: "Select an Option",
+            border: OutlineInputBorder(),
+          ),
+          onChanged: (selectedItem) {
+            print("Selected: ${selectedItem.name}");
+          },
+        ),
 ```
 
 ### Multi-Selection Dropdown
@@ -60,40 +60,73 @@ DropdownField.singleSelection(
 ```dart
 final multiController = MultiValueDropDownController();
 
-DropdownField.multiSelection(
-  controller: multiController,
-  dropDownList: [
+//DropDownValue model list
+  final List<DropDownValueModel> sportsOptions = [
     DropDownValueModel(name: 'Football', value: 'football'),
     DropDownValueModel(name: 'Cricket', value: 'cricket'),
     DropDownValueModel(name: 'Basketball', value: 'basketball'),
-  ],
-  isSelectAll: true,
-  displayCompleteItem: true,
-  submitButtonText: "Done",
-  submitButtonColor: Colors.blue,
-  textFieldDecoration: const InputDecoration(
-    labelText: "Select Sports",
-    border: OutlineInputBorder(),
-  ),
-  onChanged: (selectedList) {
-    print('Selected: ${selectedList.map((e) => e.name).join(', ')}');
-  },
-)
+    DropDownValueModel(name: 'Tennis', value: 'tennis'),
+    DropDownValueModel(name: 'Swimming', value: 'swimming'),
+  ];
+
+  void changeSelection(DropDownValueModel value, bool isCheck, int index) {
+    if (isCheck) {
+      value.isSelected.value = true;
+    } else {
+      value.isSelected.value = false;
+    }
+  }
+       // Dropdown field from the package
+            DropdownField.multiSelection(
+              controller: multiController,
+              dropDownList: sportsOptions,
+              isSelectAll: true,
+              displayCompleteItem: true,
+              submitButtonText: "Submit",
+              submitButtonColor: Colors.blue,
+              submitButtonTextStyle: const TextStyle(color: Colors.white),
+              textFieldDecoration: const InputDecoration(
+                labelText: "Select Sports (Package Dropdown)",
+                border: OutlineInputBorder(),
+              ),
+              onCheckChange: (model, isCheck, index) {
+                changeSelection(model, isCheck, index);
+              },
+              onChanged: (selectedList) {
+                print(
+                  "Package Dropdown - Selected Items: ${selectedList.map((e) => e.name).join(', ')}",
+                );
+              },
+            ),
 ```
 
 ### With Search Functionality
 
 ```dart
-DropdownField.singleSelection(
-  controller: singleController,
-  dropDownList: items,
-  enableSearch: true,
-  searchDecoration: const InputDecoration(
-    hintText: 'Search...',
-    prefixIcon: Icon(Icons.search),
-  ),
-  // ... other properties
-)
+     DropdownField.multiSelection(
+              enableSearch: true,
+              controller: multiController,
+              dropDownList: sportsOptions,
+              isSelectAll: true,
+              displayCompleteItem: true,
+              submitButtonText: "Submit",
+              submitButtonColor: Colors.blue,
+              submitButtonTextStyle: const TextStyle(color: Colors.white),
+              textFieldDecoration: const InputDecoration(
+                labelText: "Select Sports (Package Dropdown)",
+                border: OutlineInputBorder(),
+              ),
+              onCheckChange: (model, isCheck, index) {
+                changeSelection(model, isCheck, index);
+              },
+              onChanged: (selectedList) {
+                print(
+                  "Package Dropdown - Selected Items: ${selectedList.map((e) => e.name).join(', ')}",
+                );
+              },
+            ),
+
+
 ```
 
 ## Customization Options
@@ -105,9 +138,37 @@ DropdownField.singleSelection(
 - **Animations**: Smooth dropdown animations
 - **Accessibility**: Full accessibility support
 
+## Screenshots
+
+Here are some screenshots showcasing the advance dropdown functionality:
+
+### Single Selection Dropdown
+![Single Selection](lib/advance_dropdown_plus/example/screenshots/Screenshot_20250725_143927.jpg)
+
+### Multi-Selection Dropdown
+![Multi Selection](lib/advance_dropdown_plus/example/screenshots/Screenshot_20250725_143933.jpg)
+
+### Search Functionality
+![Search Feature](lib/advance_dropdown_plus/example/screenshots/Screenshot_20250725_143943.jpg)
+
+### Select All Feature
+![Select All](lib/advance_dropdown_plus/example/screenshots/Screenshot_20250725_144624.jpg)
+
+### Customized Styling
+![Custom Styling](lib/advance_dropdown_plus/example/screenshots/Screenshot_20250725_144702.jpg)
+
 ## Example
 
 Check out the `/example` folder for complete working examples of both single and multi-selection dropdowns.
+
+## Contributors
+
+This package was developed and maintained by:
+
+- **Pranay Pathrabe** - (Developer)
+- **Amol Gahukar** ([@amolgahukar10](https://github.com/amolgahukar10)) - (Lead Developer & Architect)
+
+Special thanks to all contributors who helped make this package better!
 
 ## Contributing
 
